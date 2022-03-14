@@ -49,13 +49,18 @@ function NavigationBar() {
                     }
                     {username != null &&
                         <li>
+                            <h2><Link to='/myTickets'>myTickets</Link></h2>
+                        </li>
+                    }
+                    {username != null &&
+                        <li>
                             <button onClick={() => {
                                 localStorage.clear();
                                 setUser(null);
                                 window.location.href = '/';
-                            }}><h1>
+                            }}><h2>
                                 Log Out
-                            </h1>
+                            </h2>
 
                             </button>
                         </li>

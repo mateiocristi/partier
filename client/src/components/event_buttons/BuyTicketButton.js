@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import select from "react-select/base";
 import {useToast} from "@chakra-ui/react";
 
-function ApproveButton(props) {
+function BuyTicketButton(props) {
 
     const toast = useToast();
 
@@ -87,8 +87,7 @@ function ApproveButton(props) {
                     const optionsJSX = [];
 
                     for (let option of options) {
-                        console.log("jsx " + typeof (option.value));
-                        optionsJSX.push(<option value={option.value}>{option.label} {option.expYear}</option>);
+                        optionsJSX.push(<option key={option.label} value={option.value}>{option.label} {option.expYear}</option>);
                     }
 
                     return optionsJSX;
@@ -100,4 +99,4 @@ function ApproveButton(props) {
 
 }
 
-export default ApproveButton;
+export default BuyTicketButton;

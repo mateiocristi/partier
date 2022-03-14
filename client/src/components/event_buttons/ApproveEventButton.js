@@ -1,4 +1,4 @@
-function ApproveButton(props) {
+function ApproveEventButton(props) {
 
     function approveHandler(){
         let requestOptions = {
@@ -17,4 +17,4 @@ function ApproveButton(props) {
     );
 }
 
-export default ApproveButton;
+export default ApproveEventButton;

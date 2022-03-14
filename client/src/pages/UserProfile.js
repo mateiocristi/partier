@@ -1,5 +1,5 @@
 import Card from "../components/ui/Card";
-import classes from "./UserProfile.module.css";
+import classes from "./style/UserProfile.module.css";
 import UpdateUserFrom from "../components/layout/UpdateUserForm";
 import {useEffect, useState} from "react";
 import AddNewCardForm from "../components/layout/AddNewCardForm";

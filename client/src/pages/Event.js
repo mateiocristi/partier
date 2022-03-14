@@ -39,10 +39,4 @@ function EventPage() {
 
 }
 
-async function getEvents(id) {
-    const response = await fetch("http://localhost:5000/" + id);
-    const event = await response.json();
-    return event;
-}
-
 export default EventPage;

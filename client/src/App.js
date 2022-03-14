@@ -8,6 +8,7 @@ import Event from "./pages/Event";
 import AddEvent from "./pages/AddEvent";
 import UserProfilePage from "./pages/UserProfile";
 import ManageEvents from "./pages/ManageEvents";
+import MyTicketsPage from "./pages/MyTickets";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
             <NavigationBar/>
             <Routes>
                 <Route path="/" element={<AllEvents/>} exact/>
+                <Route path="/myTickets" element={<MyTicketsPage/>} exact/>
                 <Route path="/event/:eventId" element={<Event/>} exact/>
                 <Route path="/theater" element={<Theater/>} exact/>
                 <Route path="/profile" element={<UserProfilePage/>} exact/>

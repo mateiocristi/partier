@@ -1,6 +1,6 @@
 import classes from './EventItem.module.css';
 import {Link, useNavigate} from "react-router-dom";
-import ApproveButton from "../event_buttons/ApproveButton";
+import ApproveEventButton from "../event_buttons/ApproveEventButton";
 import BuyTicketButton from "../event_buttons/BuyTicketButton";
 import ToFavoriteButton from "../event_buttons/ToFavoriteButton";
 import RefuseButton from "../event_buttons/RefuseButton";
@@ -19,8 +19,8 @@ function EventItem(props) {
             </div>
             <div className={classes.actions}>
                 {props.approve != null &&
-                    <ApproveButton eventId={props.event.id}
-                                   removeEventFromLoadedEvents={props.removeEventFromLoadedEvents}
+                    <ApproveEventButton eventId={props.event.id}
+                                        removeEventFromLoadedEvents={props.removeEventFromLoadedEvents}
                     />
                 }
                 {props.unapprove != null &&
