@@ -1,5 +1,7 @@
 import EventList from "../components/events/EventList";
 import {useEffect, useState} from "react";
+import Countdown from "../components/countdown/Countdown.js";
+import {background} from "@chakra-ui/react";
 
 function AllEventsPage() {
 
@@ -50,8 +52,13 @@ function AllEventsPage() {
         );
     }
 
+    console.log("background ", loadedEvents);
+
     return (
         <section>
+            {loadedEvents.length > 0 &&
+            <Countdown timeTillDate="05 26 2023, 6:00 am" timeFormat="MM DD YYYY, h:mm a" backgroundImage={loadedEvents[0].image} />
+            }
             <EventList events={loadedEvents}/>
         </section>
     );
