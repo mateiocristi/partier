@@ -1,0 +1,29 @@
+.imgContainer {
+    margin-left: 43%;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    top: 1rem;
+    text-align: center;
+    position: relative;
+}
+
+.formContainer {
+    margin-top: 1rem;
+    top: 1rem;
+    margin-left: 10%;
+}
+
+.imgContainer img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.form {
+    margin-left: 35%;
+}
+
+.name{
+    margin-top: 5rem;
+    text-align: center;
+}
