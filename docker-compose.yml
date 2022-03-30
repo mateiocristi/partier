@@ -1,0 +1,54 @@
+version: '3.8'
+
+#Define services
+services:
+
+  #PostgreSQL Database for the application
+  partierDB-postgres:
+    image: "postgres:latest"
+    container_name: partierDB-postgres
+    #Volume mounted for database for the storage
+    volumes:
+      - partier-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432" # Forward the exposed port 5432 on the container to port 5432 on the host machine
+
+    #Environment variable for DB name, user and password
+    environment:
+      - POSTGRES_DB=partierDB
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  #Back-end Spring Boot Application
+  server:
+    #The docker file in scrum-app build the jar and provides the docker image with the following name.
+    build: ./server
+    container_name: server
+
+    #Environment variables for Spring Boot Application.
+    environment:
+      - DB_SERVER=partierDB-postgres
+      - POSTGRES_DB=postgresDB
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5000:5000" # Forward the exposed port 5000 on the container to port 5000 on the host machine
+    links:
+      - partierDB-postgres
+
+  #Fron-end Angular Application
+  client:
+    build: ./client
+    container_name: client
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    links:
+      - server
+
+#Volumes for DB data
+volumes:
+  partier-data:
+
+
