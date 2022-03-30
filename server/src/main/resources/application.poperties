@@ -1,0 +1,10 @@
+spring.datasource.url=jdbc:postgresql://partierDB-postgres:5432/partierDB
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+spring.jpa.hibernate.ddl-auto=update
+
+spring.h2.console.path=/db
+spring.h2.console.enabled=true
+
+# Interactive Swagger API documentation with UI can be found at http://localhost:8080/swagger-ui.html
+springdoc.swagger-ui.path=/swagger-ui.html
