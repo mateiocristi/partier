@@ -29,3 +29,7 @@
 - PostgreSQL
 - ReactJS
 - Stripe 
+
+## Classes Diagram Picture
+
+![](C:\Users\matei\Downloads\diagram.png)
