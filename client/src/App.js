@@ -6,20 +6,23 @@ import AllEvents from "./pages/AllEvents";
 import FooterPage from "./components/layout/Footer";
 import Event from "./pages/Event";
 import AddEvent from "./pages/AddEvent";
-import UserProfilePage from "./pages/UserProfile";
+import ClientUserProfilePage from "./pages/ClientUserProfile";
 import ManageEvents from "./pages/ManageEvents";
 import MyTicketsPage from "./pages/MyTickets";
+import 'materialize-css/dist/css/materialize.min.css';
+import 'materialize-css/dist/js/materialize.min.js';
+import 'material-icons/iconfont/material-icons.css';
 
 function App() {
     return (
-        <div>
+        <div className="App">
             <NavigationBar/>
             <Routes>
                 <Route path="/" element={<AllEvents/>} exact/>
                 <Route path="/myTickets" element={<MyTicketsPage/>} exact/>
                 <Route path="/event/:eventId" element={<Event/>} exact/>
                 <Route path="/theater" element={<Theater/>} exact/>
-                <Route path="/profile" element={<UserProfilePage/>} exact/>
+                <Route path="/profile" element={<ClientUserProfilePage/>} exact/>
                 <Route path="/add-event" element={<AddEvent/>} exact/>
                 <Route path="/manage-events" element={<ManageEvents/>} exact/>
             </Routes>

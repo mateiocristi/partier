@@ -23,7 +23,7 @@ class Countdown extends React.Component {
             const seconds = countdown.format('ss');
 
             this.setState({ days, hours, minutes, seconds });
-        }, 1000);
+        }, 0.1);
     }
 
     componentWillUnmount() {
@@ -41,6 +41,8 @@ class Countdown extends React.Component {
         const minutesRadius = mapNumber(minutes, 60, 0, 0, 360);
         const secondsRadius = mapNumber(seconds, 60, 0, 0, 360);
 
+
+
         if (!seconds) {
             return null;
         }
@@ -50,7 +52,7 @@ class Countdown extends React.Component {
                 backgroundImage: "url(" + this.props.backgroundImage + ")",
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover'
-            }}>>
+            }}>
                 <div className={classes.countdownWrapper}>
                     {days && (
                         <div className={classes.countdownItem}>

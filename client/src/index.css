@@ -1,4 +1,8 @@
-/*body {*/
-/*    background-color: whitesmoke;*/
-/*    margin: 0;*/
-/*}*/
+body {
+    height: 100%;
+    width: 100%;
+}
+
+.App {
+    text-align: center;
+}
