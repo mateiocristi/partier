@@ -9,6 +9,9 @@ import AddEvent from "./pages/AddEvent";
 import ClientUserProfilePage from "./pages/ClientUserProfile";
 import ManageEvents from "./pages/ManageEvents";
 import MyTicketsPage from "./pages/MyTickets";
+import 'materialize-css/dist/css/materialize.min.css';
+import 'materialize-css/dist/js/materialize.min.js';
+import 'material-icons/iconfont/material-icons.css';
 
 function App() {
     return (

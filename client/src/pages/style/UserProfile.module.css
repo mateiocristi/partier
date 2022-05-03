@@ -1,5 +1,6 @@
 .profileContainer {
     min-height: 100vh;
+    text-align: center;
 }
 
 .imgContainer {
@@ -23,6 +24,7 @@
 
 .ticketsContainer{
     margin-top: 100px;
+    text-align: initial;
     text-align: center;
 }
 
