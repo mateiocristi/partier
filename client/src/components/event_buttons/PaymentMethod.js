@@ -2,6 +2,8 @@ import {useState} from "react";
 
 function PaymentMethodsSelect(props) {
 
+    console.log("mortii");
+
     const user = JSON.parse(localStorage.getItem("user"));
 
     const [cards, setCards] = useState("");
@@ -16,13 +18,18 @@ function PaymentMethodsSelect(props) {
         .then(result => setCards(result))
         .catch(error => console.log('error', error));
 
-    console.log(cards);
+    console.log("morti 2",  cards);
 
     return (
         <>
-            <select name="role" required="" id="cardId" onChange={event => props.setCardId(event.target.value)}>
-                <option aria-required="" value="pm_1KYpTIG8Vd74GxWd4WYTBB7C">pm_1KYpTIG8Vd74GxWd4WYTBB7C</option>
-            </select>
+            <div className="input-field">
+                <select>
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                </select>
+            </div>
         </>
     );
 }

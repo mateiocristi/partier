@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import EventItem from "../components/events/EventItem";
+import EventOldItem from "../components/events/EventOldItem";
 
 function ManageEvents() {
 
@@ -55,10 +55,10 @@ function ManageEvents() {
 
     return (
         <section>
-            {loadedEvents.map(event => <EventItem event={event}
-                                                  approve={true}
-                                                  unapprove={true}
-                                                  removeEventFromLoadedEvents={removeEventFromLoadedEvents}
+            {loadedEvents.map(event => <EventOldItem event={event}
+                                                     approve={true}
+                                                     unapprove={true}
+                                                     removeEventFromLoadedEvents={removeEventFromLoadedEvents}
             />)}
         </section>
     );

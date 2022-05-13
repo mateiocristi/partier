@@ -1,7 +1,6 @@
 import classes from './Countdown.module.css';
 import React from 'react';
 import moment from 'moment';
-import {background} from "@chakra-ui/react";
 
 class Countdown extends React.Component {
     state = {

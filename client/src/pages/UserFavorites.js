@@ -1,7 +1,7 @@
 import Card from "../components/ui/Card";
 import UpdateUserFrom from "../components/layout/UpdateUserForm";
 import {useEffect, useState} from "react";
-import EventItem from "../components/events/EventItem";
+import EventOldItem from "../components/events/EventOldItem";
 
 function UserFavorites() {
 
@@ -54,9 +54,9 @@ function UserFavorites() {
 
     return (
         <section>
-            {loadedEvents.map(event => <EventItem event={event}
-                                                  unapprove={true}
-                                                  removeEventFromLoadedEvents={removeEventFromLoadedEvents}
+            {loadedEvents.map(event => <EventOldItem event={event}
+                                                     unapprove={true}
+                                                     removeEventFromLoadedEvents={removeEventFromLoadedEvents}
             />)}
         </section>
     );

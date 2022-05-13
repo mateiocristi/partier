@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import EventItem from "../components/events/EventItem";
+import EventOldItem from "../components/events/EventOldItem";
 
 function EventPage() {
     const params = useParams();
@@ -33,8 +33,8 @@ function EventPage() {
     }
 
     return (
-        <EventItem event={loadedEvent}
-                   buyTicket={true}/>
+        <EventOldItem event={loadedEvent}
+                      buyTicket={true}/>
     );
 
 }
