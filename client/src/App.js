@@ -1,33 +1,45 @@
-import NavigationBar from './components/layout/NavigationBar';
-import {Route, Routes} from "react-router-dom";
-
-import Theater from "./pages/Theater";
-import AllEvents from "./pages/AllEvents";
-import FooterPage from "./components/layout/Footer";
-import Event from "./pages/Event";
-import AddEvent from "./pages/AddEvent";
-import ClientUserProfilePage from "./pages/ClientUserProfile";
-import ManageEvents from "./pages/ManageEvents";
-import MyTicketsPage from "./pages/MyTickets";
-import 'materialize-css/dist/css/materialize.min.css';
-import 'materialize-css/dist/js/materialize.min.js';
 import 'material-icons/iconfont/material-icons.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import VerticalNavbar from "./components/layout/VerticalNavbar";
+import HorizontalNavbar from "./components/layout/HorizontalNavbar";
+import EventsPage from "./pages/EventsPage";
+
+import {Route, Routes} from "react-router-dom";
+import {Provider, atom, useAtom} from "jotai";
+import AuthService from "./service/AuthService";
+import {userAtom} from "./globals";
+import {useEffect} from "react";
 
 function App() {
+    const [user, setUser] = useAtom(userAtom);
+
+    console.log("main user is ", user);
+
+    useEffect(() => {
+        setUser(AuthService.getCurrentUser());
+    }, [])
+
     return (
-        <div className="App">
-            <NavigationBar/>
-            <Routes>
-                <Route path="/" element={<AllEvents/>} exact/>
-                <Route path="/myTickets" element={<MyTicketsPage/>} exact/>
-                <Route path="/event/:eventId" element={<Event/>} exact/>
-                <Route path="/theater" element={<Theater/>} exact/>
-                <Route path="/profile" element={<ClientUserProfilePage/>} exact/>
-                <Route path="/add-event" element={<AddEvent/>} exact/>
-                <Route path="/manage-events" element={<ManageEvents/>} exact/>
-            </Routes>
-            <FooterPage/>
-        </div>
+        <Provider>
+            <div className="App">
+                {/*<NavigationBar/>*/}
+                <section className="navSection">
+                    <VerticalNavbar/>
+                    {/*<div className="navDivider"/>*/}
+                </section>
+                <section className="right-section">
+                    <HorizontalNavbar/>
+                    <div className="contentSection">
+                        <Routes>
+                            <Route path="/" element={<EventsPage/>} exact/>
+                        </Routes>
+                    </div>
+                </section>
+
+                {/*<FooterPage/>*/}
+            </div>
+        </Provider>
+
     );
 }
 

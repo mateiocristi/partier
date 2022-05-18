@@ -1,56 +1,21 @@
 import {useEffect, useState} from "react";
 import select from "react-select/base";
-import {useToast} from "@chakra-ui/react";
+// import {useToast} from "@chakra-ui/react";
 
 function BuyTicketButton(props) {
 
-    const toast = useToast();
+    console.log("this is buy ticket button");
 
-    const [selectedCardId, setSelectedCardId] = useState("");
-    const [options, setOptions] = useState([])
+    // const [selectedCardId, setSelectedCardId] = useState("");
+    const [userCards, setUserCards] = useState([])
     const user = JSON.parse(localStorage.getItem("user"));
 
-    const requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-    };
-
-
-    function buyHandler() {
-        const user = JSON.parse(localStorage.getItem("user"));
-
+    useEffect(() => {
         const requestOptions = {
             method: 'GET',
             redirect: 'follow'
         };
-        console.log("user id is " + user.id);
-        fetch("http://localhost:5000/events/buy/" + user.id + "/" + props.eventId + "/" + user.stripeCustomerId + "/" + selectedCardId, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                if (result !== "failed")
-                    toast({
-                        title: 'Payment approved.',
-                        description: "",
-                        status: 'success',
-                        duration: 3000,
-                        isClosable: true,
-                    })
-                else {
-                    toast({
-                        title: 'Payment rejected.',
-                        description: "",
-                        status: 'error',
-                        duration: 3000,
-                        isClosable: true,
-                    })
-                }
 
-                console.log("myresult " + result)
-            })
-            .catch(error => console.log('error', error));
-    }
-
-    useEffect(() => {
         fetch("http://localhost:5000/api/cards/" + user.username, requestOptions)
             .then(response => {
                 return response.json();
@@ -72,27 +37,63 @@ function BuyTicketButton(props) {
 
                 }
 
-                setOptions(op);
+                setUserCards(op);
                 // console.log("options ", options);
 
             })
             .catch(error => console.log('error', error));
 
-    }, [])
+    }, []);
 
-    return (<>
-            <select onChange={(event =>
-                setSelectedCardId(event.target.value))}>
-                {(() => {
-                    const optionsJSX = [];
+    function buyHandler() {
+        const user = JSON.parse(localStorage.getItem("user"));
 
-                    for (let option of options) {
-                        optionsJSX.push(<option key={option.label} value={option.value}>{option.label} {option.expYear}</option>);
-                    }
+        const requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+        console.log("user id is " + user.id);
+        fetch("http://localhost:5000/events/buy/" + user.id + "/" + props.eventId + "/" + user.stripeCustomerId + "/" + props.cardId, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                if (result !== "failed") {
 
-                    return optionsJSX;
-                })()}
-            </select>
+                }
+
+                else {
+
+                }
+
+                console.log("myresult " + result)
+            })
+            .catch(error => console.log('error', error));
+    }
+
+    console.log("length ", userCards.length);
+
+    return (
+        <>
+            {userCards.length === 0 &&
+                <select onChange={(event => {
+                    props.setCardId(event.target.value);
+                    console.log("card id ", props.cardId);
+                })}>
+                    {/*{(() => {*/}
+                    {/*    const optionsJSX = [];*/}
+
+                    {/*    for (let option of userCards) {*/}
+                    {/*        optionsJSX.push(<option key={option.label}*/}
+                    {/*                                value={option.value}>{option.label} {option.expYear}</option>);*/}
+                    {/*    }*/}
+                    {/*    console.log("my cards ", userCards);*/}
+                    {/*    // optionsJSX.push(<option key={userCards[0].label}*/}
+                    {/*    //                         value="xx">{userCards[0].label}</option>);*/}
+                    {/*    // optionsJSX.push(<option key="yy"*/}
+                    {/*    //                         value="yy">yyyy</option>);*/}
+                    {/*    return optionsJSX;*/}
+                    {/*})()}*/}
+                </select>
+            }
             <button onClick={buyHandler}>Buy Ticket</button>
         </>
     );

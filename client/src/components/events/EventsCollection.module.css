@@ -1,0 +1,75 @@
+.content {
+    display: flex;
+    padding: 5vh;
+    height: 100vh;
+}
+
+.leftContent {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    height: 100%;
+    /*align-items: stretch;*/
+    width: 50%;
+    padding: 1vh;
+}
+
+.leftContent h1 {
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 800;
+    font-size: 10vh;
+}
+
+.leftContent h2 {
+    color: dimgrey;
+}
+
+.leftContent h5 {
+    color: dimgray;
+}
+
+.description {
+
+    align-items: center;
+    justify-content: center;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 5vh;
+}
+
+.btnContainer button{
+    margin-right: 1vh;
+}
+
+.rightContent {
+    width: 100%;
+    height: available;
+    /*margin-top: auto;*/
+    overscroll-behavior-y: auto;
+    overflow: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.rightContent::-webkit-scrollbar {
+    display: none;
+}
+
+.card {
+    background: white;
+    height: 50vh;
+    margin-bottom: 2vh;
+    object-fit: fill;
+    border-radius: 1%;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.invisible {
+    height: 50vh;
+    margin-bottom: 2vh;
+}
+
