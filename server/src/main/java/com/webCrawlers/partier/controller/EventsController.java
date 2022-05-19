@@ -1,7 +1,7 @@
 package com.webCrawlers.partier.controller;
 
-import com.stripe.model.Order;
 import com.stripe.model.PaymentIntent;
+import com.webCrawlers.partier.model.CardDetails;
 import com.webCrawlers.partier.model.Event;
 //import com.webCrawlers.partier.model.Order;
 import com.webCrawlers.partier.model.TicketOrder;
@@ -67,10 +67,11 @@ public class EventsController {
         return eventService.getAllFavoriteEventsForUser(userId);
     }
 
-    @GetMapping("/buy/{userId}/{eventId}/{stripeUserId}/{paymentMethodId}")
-    public String getTicket(@PathVariable Long userId, @PathVariable String paymentMethodId, @PathVariable String stripeUserId, @PathVariable Long eventId) {
+    @GetMapping("/buy/{userId}/{eventId}/{stripeUserId}")
+    public String buyTicket(@RequestBody CardDetails cardDetails, @PathVariable Long userId, @PathVariable String stripeUserId, @PathVariable Long eventId) {
+        String stripePaymentMethodId = userService.generatePaymentMethodId(cardDetails, String.valueOf(userService.getUser(userId).getUsername()));
         PaymentIntent paymentIntent = createPaymentIntent(100, "USD", stripeUserId);
-        PaymentIntent updatedPaymentIntent = StripeApi.tryToConfirmPayment(paymentIntent, paymentMethodId);
+        PaymentIntent updatedPaymentIntent = StripeApi.tryToConfirmPayment(paymentIntent, stripePaymentMethodId);
         if (updatedPaymentIntent.getStatus().equals("succeeded")) {
             System.out.println("payment success");
             // create order

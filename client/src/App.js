@@ -7,11 +7,28 @@ import EventsPage from "./pages/EventsPage";
 import {Route, Routes} from "react-router-dom";
 import AuthService from "./service/AuthService";
 import {useEffect} from "react";
+import {
+    setUser,
+    selectUser
+} from "./service/userSlice";
+import {
+    setRole,
+    setRoleUser,
+    setRoleOrganiser,
+    selectRole
+} from "./service/roleSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 function App() {
 
+    const currentRole = useSelector(selectRole);
+    const currentUser = useSelector(selectUser);
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        // setCurrentUser(AuthService.getCurrentUser());
+        const user = AuthService.getCurrentUser();
+        dispatch(setUser(user));
+        dispatch(setRole(user.roles[0]));
     }, [])
 
 

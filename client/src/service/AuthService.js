@@ -34,7 +34,7 @@ class AuthService {
                     fetch("http://localhost:5000/api/users/name/" + user.username, requestOptions)
                         .then(response => response.text())
                         .then(result => {
-                            localStorage.setItem("user", JSON.stringify(result));
+                            localStorage.setItem("user", result);
                             window.location.href = '/';
                         })
                         .catch(error => console.log('error', error));
@@ -79,7 +79,7 @@ class AuthService {
     }
 
     getCurrentUser() {
-        const user = JSON.parse(localStorage.getItem("user"));
+        let user = JSON.parse(localStorage.getItem("user"));
         return user;
     }
 }
