@@ -67,7 +67,7 @@ public class EventsController {
         return eventService.getAllFavoriteEventsForUser(userId);
     }
 
-    @GetMapping("/buy/{userId}/{eventId}/{stripeUserId}")
+    @PostMapping("/buy/{userId}/{eventId}/{stripeUserId}")
     public String buyTicket(@RequestBody CardDetails cardDetails, @PathVariable Long userId, @PathVariable String stripeUserId, @PathVariable Long eventId) {
         String stripePaymentMethodId = userService.generatePaymentMethodId(cardDetails, String.valueOf(userService.getUser(userId).getUsername()));
         PaymentIntent paymentIntent = createPaymentIntent(100, "USD", stripeUserId);

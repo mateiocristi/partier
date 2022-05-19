@@ -1,12 +1,15 @@
 import {Form} from "react-bootstrap";
-import React from "react";
+import React, {useState} from "react";
 
 function ChooseTicketStep(props) {
+
+    const [quantity, setQuantity] = useState(1);
+    const dummyPrice = 100;
     return (
         <Form>
             <Form.Group className="mb-3" controlId="addEventForm.ControlInput1">
+                <Form.Label>Ticket type</Form.Label>
                 <Form.Select aria-label="select ticket">
-                    <option>Open this select menu</option>
                     <option value="VIP">VIP</option>
                     <option value="STANDARD">Standard</option>
                     <option value="GOLD">Gold</option>
@@ -16,12 +19,14 @@ function ChooseTicketStep(props) {
                 <Form.Label>Quantity</Form.Label>
                 <Form.Control
                     type="number"
-                    value={props.quantity}
                     onChange={e => {
-                        props.setQuantity(e.target.value)
+                        console.log("cahnged ", e.target.value);
+                        props.setQuantity(e.target.value);
+                        setQuantity(e.target.value);
                     }}
                 />
             </Form.Group>
+            <h3>Total: ${quantity * dummyPrice}</h3>
         </Form>
 
     )

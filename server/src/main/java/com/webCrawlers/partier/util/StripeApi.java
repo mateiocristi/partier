@@ -62,6 +62,7 @@ public class StripeApi {
         } catch (StripeException e) {
             e.printStackTrace();
         }
+        assert paymentMethod != null;
         return paymentMethod.getId();
     }
 

@@ -17,7 +17,7 @@ import TicketsModal from "../components/layout/modals/TicketsModal";
 
 const HEADER_IMG = "https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/shutterstock_199419065.jpg";
 
-function EventsPage(props) {
+function EventsPage() {
 
     const currentUser = useSelector(selectUser);
     const currentRole = useSelector(selectRole);
@@ -35,14 +35,17 @@ function EventsPage(props) {
     const [endDate, setEndDate] = useState(new Date());
     const [image, setImage] = useState("");
     const [category, setCategory] = useState("");
-    const [step, setStep] = ({title: "Buy ticket", nr: 1});
+    const [step, setStep] = useState({title: "Buy ticket", nr: 1});
 
 
     const handleShowAddForm = () => setShowAddForm(true);
     const handleCloseAddForm = () => setShowAddForm(false);
 
-    const handleTicketModal = () => setShowAddForm(true);
-    const handleCloseTicketModal = () => setShowAddForm(false);
+    const handleTicketModal = () => setShowTicketModal(true);
+    const handleCloseTicketModal = () => {
+        setShowTicketModal(false);
+        setStep({title: "Buy ticket", nr: 1});
+    }
 
     useEffect(() => {
         setIsLoading(true);
@@ -147,8 +150,10 @@ function EventsPage(props) {
                         <h5>{currentEvent.description}</h5>}
                 </div>
                 <div className={classes.btnContainer}>
-                    <button className="btn btn-dark">Tickets</button>
-                    <TicketsModal step={step} setStep={setStep} showTicketModal={showTicketModal} handleCloseTicketModal={handleCloseTicketModal} goToStep2={goToStep2}/>
+                    { currentUser !== null &&
+                        <button className="btn btn-dark" onClick={handleTicketModal}>Tickets</button>
+                    }
+                    <TicketsModal step={step} setStep={setStep} showTicketModal={showTicketModal} handleCloseTicketModal={handleCloseTicketModal} currentEvent={currentEvent}/>
                     <button className="btn btn-outline-danger">See more</button>
                 </div>
             </div>

@@ -5,14 +5,6 @@ function AddCardStep(props) {
 
     return (
         <Form>
-            <Form.Group className="mb-3" controlId="addEventForm.ControlInput1">
-                <Form.Select aria-label="select ticket">
-                    <option>Open this select menu</option>
-                    <option value="VIP">VIP</option>
-                    <option value="STANDARD">Standard</option>
-                    <option value="GOLD">Gold</option>
-                </Form.Select>
-            </Form.Group >
             <Form.Group className="mb-3" controlId="addEventForm.ControlInput2">
                 <Form.Label>Card number</Form.Label>
                 <Form.Control
