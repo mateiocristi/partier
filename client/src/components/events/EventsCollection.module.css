@@ -11,7 +11,7 @@
     height: 100%;
     /*align-items: stretch;*/
     width: 50%;
-    padding: 1vh;
+    padding: 5vh;
 }
 
 .leftContent h1 {
@@ -44,6 +44,8 @@
 
 .btnContainer button{
     margin-right: 1vh;
+    width: 8vh;
+    height: 4vh;
 }
 
 .rightContent {
@@ -71,5 +73,26 @@
 .invisible {
     height: 50vh;
     margin-bottom: 2vh;
+}
+
+.addBtnContainer {
+    width: 5vh;
+    margin-top: auto;
+}
+
+.addBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 6vh;
+    width: 6vh;
+    margin-top: auto;
+    margin-bottom: 12vh;
+    margin-left: 2vh;
+    border-radius: 50%;
+    background-color: #2c292b;
+    font-size: larger;
+    border-color: #2c292b;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 

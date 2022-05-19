@@ -2,7 +2,6 @@ import classes from "./EventsCollection.module.css";
 import {useEffect, useState} from "react";
 
 function EventCollection(props) {
-    console.log("props ", props);
     const [scrollPosition, setScrollPosition] = useState(0);
     useEffect(() => {
         const inv = document.querySelector(".invisible");
@@ -17,7 +16,6 @@ function EventCollection(props) {
     return ( <>
         {props.events.map(event =>
             <div key={event.id} className={classes.card + " container"} style={{backgroundImage: "url(" + event.image + ")"}}/>
-
         )}
     </>);
 }

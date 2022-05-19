@@ -102,7 +102,7 @@ public class UserServiceImp implements UserService, UserDetailsService {
     @Override
     public List<CardDetails> getCardsForUser(String username) {
         AppUser user = userRepo.findByUsername(username);
-        Set<String> cardsIds = Set.copyOf(user.getCards().stream().map(card -> card.getStripeCardId()).collect(Collectors.toSet()));
+        Set<String> cardsIds = Set.copyOf(user.getCards().stream().map(Card::getStripeCardId).collect(Collectors.toSet()));
         List<PaymentMethod> paymentMethods = getPaymentMethodsByIds(cardsIds);
         List<CardDetails> cards = new ArrayList<>();
         for (PaymentMethod paymentMethod : paymentMethods){
