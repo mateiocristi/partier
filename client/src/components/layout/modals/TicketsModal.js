@@ -1,4 +1,4 @@
-import {Button, Form, Modal} from "react-bootstrap";
+import {Button, Form, Modal, Toast} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
 import ChooseTicketStep from "./ChooseTicketStep";
 import AddCardStep from "./AddCardStep";
@@ -8,6 +8,7 @@ import {
     selectUser
 } from "../../../service/userSlice";
 import {useSelector} from "react-redux";
+import classes from "../../events/EventsCollection.module.css";
 
 function TicketsModal(props) {
 
@@ -21,6 +22,10 @@ function TicketsModal(props) {
     const [expMonth, setExpMonth] = useState(null);
     const [cvv, setCvv] = useState(null);
     const [view, setView] = useState(<ChooseTicketStep quantity={quantity} setQuantity={setQuantity}/>);
+
+    const [showToast, setShowToast] = useState(false);
+    const [toastTitle, setToastTitle]= useState("Payment failed");
+    const [isSuccessful, setIsSuccessful] = useState(false);
 
     // useEffect(() => {
     //     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -48,6 +53,9 @@ function TicketsModal(props) {
     }
 
     function resetSates() {
+        setToastTitle("Payment failed");
+        setShowToast(false);
+        setIsSuccessful(false);
         setNumber(null);
         setExpMonth(null);
         setExpYear(null);
@@ -55,7 +63,9 @@ function TicketsModal(props) {
         setQuantity(1);
     }
 
-    async function proceedPayment() {
+    function proceedPayment() {
+
+        console.log("toast title ", toastTitle);
 
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -80,35 +90,61 @@ function TicketsModal(props) {
         fetch("http://localhost:5000/events/buy/" + currentUser.id + "/" + props.currentEvent.id + "/" + currentUser.stripeCustomerId, requestOptions)
             .then(response => response.text())
             .then(result => {
+                console.log("result ", result);
                 if (result === "failed") {
-                    alert("Payment failed");
-                } else {
-                    alert(result);
+                    setIsSuccessful(false);
+                    setToastTitle("Payment failed");
+                    console.log("PAYMENT FAILED");
+                } else if(result === "success"){
+                    setIsSuccessful(true);
+                    setToastTitle("Payment successful");
+                    console.log("PAYMENT SUCCESSFUL");
                 }
+                console.log("toast title ", toastTitle);
+                props.handleCloseTicketModal();
+                setShowToast(true);
             })
-
     }
 
     return (
-        <Modal show={props.showTicketModal} onHide={props.handleCloseTicketModal}
-               size="lg"
-               aria-labelledby="contained-modal-title-vcenter"
-               centered>
-            <Modal.Header closeButton>
-                <Modal.Title>{props.step.title}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                { view }
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseButton}>
-                    Close
-                </Button>
-                <Button variant="primary" className="next-btn btn-danger" onClick={handleNextButton}>
-                    Next step
-                </Button>
-            </Modal.Footer>
-        </Modal>
+        <>
+            <Modal show={props.showTicketModal} onHide={props.handleCloseTicketModal}
+                   size="lg"
+                   aria-labelledby="contained-modal-title-vcenter"
+                   centered>
+                <Modal.Header closeButton>
+                    <Modal.Title>{props.step.title}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    { view }
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleCloseButton}>
+                        Close
+                    </Button>
+                    <Button variant="primary" className="next-btn btn-danger" onClick={handleNextButton}>
+                        Next step
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            <div className={classes.toast + " fixed-bottom"}>
+                <Toast bg={() => {
+                    if (isSuccessful === true) {
+                        return "success";
+                    } else return "danger";
+                }} onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
+                    <Toast.Header>
+                        <img
+                            src="holder.js/20x20?text=%20"
+                            className="rounded me-2"
+                            alt=""
+                        />
+                        <strong className="me-auto">{toastTitle}</strong>
+                    </Toast.Header>
+                </Toast>
+            </div>
+        </>
+
     );
 }
 

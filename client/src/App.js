@@ -28,7 +28,11 @@ function App() {
     useEffect(() => {
         const user = AuthService.getCurrentUser();
         dispatch(setUser(user));
-        dispatch(setRole(user.roles[0]));
+        console.log("user is ", user);
+        if (user !== null) {
+            dispatch(setRole(user.roles[0]));
+        }
+
     }, [])
 
 

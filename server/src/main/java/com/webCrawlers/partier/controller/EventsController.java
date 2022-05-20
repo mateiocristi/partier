@@ -81,7 +81,7 @@ public class EventsController {
             ticketOrder.setUser(userService.getUser(userId));
             ticketOrder.setEvent(eventService.getEvent(eventId));
             orderService.addOrder(ticketOrder);
-            return updatedPaymentIntent.getId();
+            return "success";
         } else {
             return "failed";
         }

@@ -98,3 +98,11 @@
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
+.toast {
+    display: block;
+    left: 50%;
+    margin-bottom: 10vh;
+    transform: translate(-10%);
+}
+
+

@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import AddEvent from "./AddEvent";
 import {useAtom} from "jotai";
 import {userAtom} from "../globals";
-import {Button, Form, Modal} from "react-bootstrap";
+import {Button, Form, Modal, Toast} from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import {
     setUser,
