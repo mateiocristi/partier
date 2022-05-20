@@ -1,7 +1,7 @@
 import 'material-icons/iconfont/material-icons.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import VerticalNavbar from "./components/layout/VerticalNavbar";
-import HorizontalNavbar from "./components/layout/HorizontalNavbar";
+import VerticalNavbar from "./components/layout/navigation/VerticalNavbar";
+import HorizontalNavbar from "./components/layout/navigation/HorizontalNavbar";
 import EventsPage from "./pages/EventsPage";
 
 import {Route, Routes} from "react-router-dom";

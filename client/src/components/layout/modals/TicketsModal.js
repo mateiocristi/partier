@@ -1,14 +1,14 @@
 import {Button, Form, Modal, Toast} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
-import ChooseTicketStep from "./ChooseTicketStep";
-import AddCardStep from "./AddCardStep";
-import ConfirmPaymentStep from "./ConfirmPaymentStep";
+import ChooseTicketStep from "./paymentModalSteps/ChooseTicketStep";
+import AddCardStep from "./paymentModalSteps/AddCardStep";
+import ConfirmPaymentStep from "./paymentModalSteps/ConfirmPaymentStep";
 import {
     setUser,
     selectUser
 } from "../../../service/userSlice";
 import {useSelector} from "react-redux";
-import classes from "../../events/EventsCollection.module.css";
+import classes from "../../eventsView/EventsCollection.module.css";
 
 function TicketsModal(props) {
 

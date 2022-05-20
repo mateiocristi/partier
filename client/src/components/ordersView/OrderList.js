@@ -1,4 +1,4 @@
-import classes from "../events/EventList.module.css";
+import classes from "../eventsView/EventList.module.css";
 import OrderItem from "./OrderItem";
 
 function OrderList(props) {

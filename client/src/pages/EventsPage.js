@@ -1,19 +1,13 @@
-import classes from "../components/events/EventsCollection.module.css";
-import EventCollection from "../components/events/EventCollection";
+import classes from "../components/eventsView/EventsCollection.module.css";
+import EventCollection from "../components/eventsView/EventCollection";
+import AddEventModal from "../components/layout/modals/AddEventModal";
+import TicketsModal from "../components/layout/modals/TicketsModal";
 import React, {useEffect, useState} from "react";
-import AddEvent from "./AddEvent";
-import {useAtom} from "jotai";
-import {userAtom} from "../globals";
-import {Button, Form, Modal, Toast} from "react-bootstrap";
-import DatePicker from "react-datepicker";
 import {
-    setUser,
     selectUser
 } from "../service/userSlice";
 import {useSelector} from "react-redux";
 import {selectRole} from "../service/roleSlice";
-import AddEventModal from "../components/layout/modals/AddEventModal";
-import TicketsModal from "../components/layout/modals/TicketsModal";
 
 const HEADER_IMG = "https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/shutterstock_199419065.jpg";
 

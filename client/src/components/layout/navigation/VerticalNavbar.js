@@ -1,4 +1,4 @@
-import classes from "./style/VerticalNavbar.module.css"
+import classes from "./VerticalNavbar.module.css"
 
 function VerticalNavbar() {
     return (
