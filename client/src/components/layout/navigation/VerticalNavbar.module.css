@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
+
+.container {
+    width: auto;
+    flex-direction: row;
+    align-content: center;
+}
+
+.logo {
+    height: 10%;
+    font-family: 'Rubik Glitch', cursive;
+    font-size: 2vh;
+    text-align: left;
+    color: white;
+    margin: 2vh 0 10vh 2vh;
+    padding: 1vh;
+}
+
+.logo h1 {
+    height: 100%;
+}
+
+.buttonDiv {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    text-align: left;
+    color: #757575;
+    padding: 0 0 0 0;
+    margin: 0 0 5%;
+    height: 10vh;
+}
+
+.buttonDiv h3{
+    font-size: 3vh;
+    margin-left: 20%;
+}
+
+
+.buttonDiv .shadow {
+    overflow: hidden;
+    height: 30px;
+}
+
+.buttonDiv .shadow:after {
+    content: '';
+    display: block;
+    margin: -10px auto 0;
+    /*width: 75%;*/
+    height: 5px;
+    border-radius: 125px/12px;
+    box-shadow: 0 0 8px grey;
+}

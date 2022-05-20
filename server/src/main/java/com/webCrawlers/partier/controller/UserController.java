@@ -84,16 +84,16 @@ public class UserController {
         return ResponseEntity.created(uri).body(userService.updateUser(user, id));
     }
 
-    @PostMapping("/event/favorites")
-    public ResponseEntity<?> addToFavorites(@RequestBody EventToUserForm eventToUserForm) {
-        userService.addEventToFavorites(eventToUserForm.getUsername(), eventToUserForm.getEventId());
-        return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("/cards/{username}")
-    public List<CardDetails> getCardsForUser(@PathVariable String username) {
-        return userService.getCardsForUser(username);
-    }
+//    @PostMapping("/event/favorites")
+//    public ResponseEntity<?> addToFavorites(@RequestBody EventToUserForm eventToUserForm) {
+//        userService.addEventToFavorites(eventToUserForm.getUsername(), eventToUserForm.getEventId());
+//        return ResponseEntity.ok().build();
+//    }
+//
+//    @GetMapping("/cards/{username}")
+//    public List<CardDetails> getCardsForUser(@PathVariable String username) {
+//        return userService.getCardsForUser(username);
+//    }
 
     @PostMapping("/uploadPicture")
     public ResponseEntity uploadDocument(@RequestParam(value = "file") MultipartFile file) throws IOException {

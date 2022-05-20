@@ -1,30 +1,59 @@
-import NavigationBar from './components/layout/NavigationBar';
-import {Route, Routes} from "react-router-dom";
+import 'material-icons/iconfont/material-icons.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import VerticalNavbar from "./components/layout/navigation/VerticalNavbar";
+import HorizontalNavbar from "./components/layout/navigation/HorizontalNavbar";
+import EventsPage from "./pages/EventsPage";
 
-import Theater from "./pages/Theater";
-import AllEvents from "./pages/AllEvents";
-import FooterPage from "./components/layout/Footer";
-import Event from "./pages/Event";
-import AddEvent from "./pages/AddEvent";
-import ClientUserProfilePage from "./pages/ClientUserProfile";
-import ManageEvents from "./pages/ManageEvents";
-import MyTicketsPage from "./pages/MyTickets";
+import {Route, Routes} from "react-router-dom";
+import AuthService from "./service/AuthService";
+import {useEffect} from "react";
+import {
+    setUser,
+    selectUser
+} from "./service/userSlice";
+import {
+    setRole,
+    setRoleUser,
+    setRoleOrganiser,
+    selectRole
+} from "./service/roleSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 function App() {
+
+    const currentRole = useSelector(selectRole);
+    const currentUser = useSelector(selectUser);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const user = AuthService.getCurrentUser();
+        dispatch(setUser(user));
+        console.log("user is ", user);
+        if (user !== null) {
+            dispatch(setRole(user.roles[0]));
+        }
+
+    }, [])
+
+
     return (
         <div className="App">
-            <NavigationBar/>
-            <Routes>
-                <Route path="/" element={<AllEvents/>} exact/>
-                <Route path="/myTickets" element={<MyTicketsPage/>} exact/>
-                <Route path="/event/:eventId" element={<Event/>} exact/>
-                <Route path="/theater" element={<Theater/>} exact/>
-                <Route path="/profile" element={<ClientUserProfilePage/>} exact/>
-                <Route path="/add-event" element={<AddEvent/>} exact/>
-                <Route path="/manage-events" element={<ManageEvents/>} exact/>
-            </Routes>
-            <FooterPage/>
+            <section className="navSection">
+                <VerticalNavbar/>
+                {/*<div className="navDivider"/>*/}
+            </section>
+            <section className="right-section">
+                <HorizontalNavbar/>
+                <div className="contentSection">
+                    <Routes>
+                        <Route path="/" element={<EventsPage/>} exact/>
+                    </Routes>
+                </div>
+            </section>
+
+            {/*<FooterPage/>*/}
         </div>
+
     );
 }
 

@@ -1,17 +1,25 @@
 .profileContainer {
     min-height: 100vh;
+    text-align: center;
+    /*background: #134670;*/
 }
 
 .imgContainer {
-    margin-top: 10px;
+    margin: 0;
+    background: rgb(119,0,46);
+    background: linear-gradient(180deg, rgba(119,0,46,1) 0%, rgba(238,0,0,1) 100%);
     text-align: center;
-    display: inline-block;
 }
 
 .imgContainer img {
     width: 200px;
     height: 200px;
+    display: initial;
     border-radius: 50%;
+}
+
+.tabs li{
+    background: rgba(238,0,0,1);
 }
 
 .username {
@@ -23,6 +31,7 @@
 
 .ticketsContainer{
     margin-top: 100px;
+    text-align: initial;
     text-align: center;
 }
 

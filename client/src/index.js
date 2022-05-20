@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter} from "react-router-dom";
 import './index.css';
 import App from './App';
-import {ChakraProvider} from '@chakra-ui/react'
+import store from "./app/store";
+import {Provider} from "react-redux";
 
 ReactDOM.render(
-    <ChakraProvider>
+    <Provider store={store}>
         <BrowserRouter>
             <App/>
         </BrowserRouter>
-    </ChakraProvider>
-    , document.getElementById('root')
+    </Provider>, document.getElementById('root')
 );

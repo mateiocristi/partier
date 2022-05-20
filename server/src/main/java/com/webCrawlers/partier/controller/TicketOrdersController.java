@@ -26,4 +26,9 @@ public class TicketOrdersController {
     public Set<TicketOrder> getAllOrders() {
         return orderService.getAllOrders();
     }
+
+//    @GetMapping("/userId")
+//    public Set<TicketOrder> getOrderForId() {
+//        return orderService.getAllOrdersForUserId();
+//    }
 }

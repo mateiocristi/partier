@@ -4,5 +4,47 @@ body {
 }
 
 .App {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
     text-align: center;
+    background:-moz-linear-gradient(151deg, rgba(0, 0, 0, 1) 7%, rgba(16, 0, 0, 1) 22%, rgba(50, 0, 0, 1) 46%, rgba(180, 0, 0, 1) 100%);
+
+    /* safari 5.1+,chrome 10+ */
+    background:-webkit-linear-gradient(151deg, rgba(0, 0, 0, 1) 7%, rgba(16, 0, 0, 1) 22%, rgba(50, 0, 0, 1) 46%, rgba(180, 0, 0, 1) 100%);
+
+    /* opera 11.10+ */
+    background:-o-linear-gradient(151deg, rgba(0, 0, 0, 1) 7%, rgba(16, 0, 0, 1) 22%, rgba(50, 0, 0, 1) 46%, rgba(180, 0, 0, 1) 100%);
+
+    /* ie 6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#B40000', endColorstr='#000000', GradientType=1 );
+
+    /* ie 10+ */
+    background:-ms-linear-gradient(151deg, rgba(0, 0, 0, 1) 7%, rgba(16, 0, 0, 1) 22%, rgba(50, 0, 0, 1) 46%, rgba(180, 0, 0, 1) 100%);
+
+    /* global 94%+ browsers support */
+    background:linear-gradient(151deg, rgba(0, 0, 0, 1) 7%, rgba(16, 0, 0, 1) 22%, rgba(50, 0, 0, 1) 46%, rgba(180, 0, 0, 1) 100%);
 }
+
+.navSection {
+    display: flex;
+}
+
+.right-section {
+    /*flex-direction: row;*/
+    flex-grow: 1;
+}
+
+.contentSection {
+    flex-grow: 1;
+    padding: 5vh;
+}
+
+.navDivider {
+
+}
+
+
