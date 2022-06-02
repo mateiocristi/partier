@@ -1,11 +1,9 @@
 package com.webCrawlers.partier.service;
 
 import com.stripe.model.PaymentMethod;
-import com.webCrawlers.partier.model.Card;
 import com.webCrawlers.partier.model.CardDetails;
 import com.webCrawlers.partier.model.Event;
 import com.webCrawlers.partier.model.user.AppUser;
-import com.webCrawlers.partier.repository.CardRepository;
 import com.webCrawlers.partier.repository.EventRepository;
 import com.webCrawlers.partier.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +34,6 @@ public class UserServiceImp implements UserService, UserDetailsService {
 
     private final UserRepo userRepo;
     private final EventRepository eventRepo;
-    private final CardRepository cardRepository;
     private final PasswordEncoder bCryptPasswordEncoder;
 
     @Override
@@ -90,31 +87,6 @@ public class UserServiceImp implements UserService, UserDetailsService {
         appUser.getFavoriteEvents().add(event);
         userRepo.save(appUser);
     }
-
-    @Override
-    public void addCard(String username, Long cardId) {
-        AppUser appUser = userRepo.findByUsername(username);
-        Card card = cardRepository.getById(cardId);
-        appUser.getCards().add(card);
-        userRepo.save(appUser);
-    }
-
-    @Override
-    public List<CardDetails> getCardsForUser(String username) {
-        AppUser user = userRepo.findByUsername(username);
-        Set<String> cardsIds = Set.copyOf(user.getCards().stream().map(Card::getStripeCardId).collect(Collectors.toSet()));
-        List<PaymentMethod> paymentMethods = getPaymentMethodsByIds(cardsIds);
-        List<CardDetails> cards = new ArrayList<>();
-        for (PaymentMethod paymentMethod : paymentMethods){
-            cards.add(new CardDetails(paymentMethod.getId(),
-                    null,
-                    Integer.parseInt(String.valueOf(paymentMethod.getCard().getExpYear())),
-                    Integer.parseInt(String.valueOf(paymentMethod.getCard().getExpMonth())),
-                    0));
-        }
-        return cards;
-    }
-
 
     @Override
     public String generatePaymentMethodId(CardDetails cardDetails, String username) {

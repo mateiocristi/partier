@@ -4,12 +4,8 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.IOUtils;
-import com.stripe.model.PaymentMethod;
-import com.webCrawlers.partier.model.Card;
-import com.webCrawlers.partier.model.CardDetails;
 import com.webCrawlers.partier.model.Event;
 import com.webCrawlers.partier.model.user.AppUser;
-import com.webCrawlers.partier.service.CardService;
 import com.webCrawlers.partier.service.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -50,7 +46,6 @@ public class UserController {
     private AmazonS3 amazonS3;
 
     private final UserService userService;
-    private final CardService cardService;
 
     @GetMapping("/users")
     public ResponseEntity<List<AppUser>> getUsers() {
@@ -127,13 +122,13 @@ public class UserController {
         return userService.getAllFavoriteEventsForUser(username);
     }
 
-    @PostMapping("/user/add-card/{username}")
-    public ResponseEntity<?> addCardToUser(@RequestBody CardDetails cardDetails, @PathVariable String username) {
-        String stripePaymentMethodId = userService.generatePaymentMethodId(cardDetails, String.valueOf(username));
-        Long id = cardService.addCard(new Card(null, stripePaymentMethodId));
-        userService.addCard(username, id);
-        return ResponseEntity.ok().build();
-    }
+//    @PostMapping("/user/add-card/{username}")
+//    public ResponseEntity<?> addCardToUser(@RequestBody CardDetails cardDetails, @PathVariable String username) {
+//        String stripePaymentMethodId = userService.generatePaymentMethodId(cardDetails, String.valueOf(username));
+//        Long id = cardService.addCard(new Card(null, stripePaymentMethodId));
+//        userService.addCard(username, id);
+//        return ResponseEntity.ok().build();
+//    }
 }
 
 @Data

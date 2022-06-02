@@ -1,7 +1,6 @@
 package com.webCrawlers.partier.service;
 
 import com.stripe.model.PaymentMethod;
-import com.webCrawlers.partier.model.Card;
 import com.webCrawlers.partier.model.CardDetails;
 import com.webCrawlers.partier.model.Event;
 import com.webCrawlers.partier.model.user.AppUser;
@@ -27,7 +26,4 @@ public interface UserService {
 
     String generatePaymentMethodId(CardDetails cardDetails, String userId);
 
-    void addCard(String username, Long cardId);
-
-    List<CardDetails> getCardsForUser(String username);
 }

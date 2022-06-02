@@ -45,6 +45,7 @@
 .btnContainer button{
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-right: 1vh;
     width: 8vh;
     height: 5vh;

@@ -1,6 +1,5 @@
 package com.webCrawlers.partier.model.user;
 
-import com.webCrawlers.partier.model.Card;
 import com.webCrawlers.partier.model.Event;
 import com.webCrawlers.partier.model.TicketOrder;
 import lombok.AllArgsConstructor;
@@ -31,9 +30,6 @@ public class AppUser {
 
     @ManyToMany
     private Collection<Event> favoriteEvents = new ArrayList<>();
-
-    @OneToMany
-    private Collection<Card> cards = new ArrayList<>();
 
     @OneToMany
     private Set<TicketOrder> orders = new HashSet<>();
