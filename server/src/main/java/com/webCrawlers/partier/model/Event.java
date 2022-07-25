@@ -1,12 +1,13 @@
 package com.webCrawlers.partier.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.webCrawlers.partier.model.user.AppUser;
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter

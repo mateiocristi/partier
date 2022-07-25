@@ -57,6 +57,7 @@ function EventsPage() {
         fetch(
             "http://localhost:5000/events/approved", requestOptions
         ).then(response => {
+            setIsLoading(false);
             return response.json();
         }).then(data => {
             if (data.length > 0) {
@@ -68,8 +69,6 @@ function EventsPage() {
                     };
                     events.push(event);
                 }
-
-                setIsLoading(false);
                 console.log("is loading " + isLoading);
                 console.log("loaded events");
                 setLoadedEvents(events);
@@ -79,11 +78,21 @@ function EventsPage() {
         });
     }, []);
 
-    if (isLoading) {
+    if (loadedEvents.length === 0) {
         return <>
-            <section>
-                Loading...
-            </section>
+            <div className={classes.content}>
+            <div className={classes.rightContent + " rightContent"}>
+                <div className={classes.invisible + " invisible"}/>
+            </div>
+            {
+                currentRole === "ROLE_ORGANISER" &&
+                <div className={classes.addBtnContainer}>
+                    <button className={classes.addBtn + " btn btn-danger"} onClick={handleShowAddForm}><i
+                        className="material-icons">add</i></button>
+                    <AddEventModal showAddForm={showAddForm} setTitle={setTitle} setDescription={setDescription} setLocation={setLocation} setStartDate={setStartDate} setEndDate={setEndDate} handleCloseAddForm={handleCloseAddForm} submitEventHandler={submitEvenHandler}/>
+                </div>
+            }
+        </div>
         </>
     }
 

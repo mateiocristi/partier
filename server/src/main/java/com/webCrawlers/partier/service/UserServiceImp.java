@@ -1,6 +1,6 @@
 package com.webCrawlers.partier.service;
 
-import com.stripe.model.PaymentMethod;
+import com.stripe.model.Customer;
 import com.webCrawlers.partier.model.CardDetails;
 import com.webCrawlers.partier.model.Event;
 import com.webCrawlers.partier.model.user.AppUser;
@@ -15,14 +15,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.stripe.model.Customer;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import static com.webCrawlers.partier.util.StripeApi.*;
 
@@ -101,7 +99,6 @@ public class UserServiceImp implements UserService, UserDetailsService {
     public Set<Event> getAllFavoriteEventsForUser(String username) {
         return Set.copyOf(userRepo.findByUsername(username).getFavoriteEvents());
     }
-
 
 
 }

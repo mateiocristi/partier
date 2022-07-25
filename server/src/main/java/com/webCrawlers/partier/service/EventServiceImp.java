@@ -43,6 +43,8 @@ public class EventServiceImp implements EventService {
 
     @Override
     public void addEvent(Event event) {
+        // for testing
+        event.setApproved(true);
         eventRepository.save(event);
     }
 

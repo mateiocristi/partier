@@ -67,8 +67,11 @@ class AuthService {
 
         return fetch("http://localhost:5000/api/user/save", requestOptions)
             .then(response => response.text())
-            .then(() => {
-                window.location.href = '/';
+            .then((data) => {
+                if (data === "user already exists")
+                    alert("user already exists")
+                else 
+                    window.location.href = '/';
             })
             .catch(error => console.log('error', error));
     }
