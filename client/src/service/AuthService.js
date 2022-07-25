@@ -69,9 +69,12 @@ class AuthService {
             .then(response => response.text())
             .then((data) => {
                 if (data === "user already exists")
-                    alert("user already exists")
-                else 
+                    alert("user already exists");
+                else {
                     window.location.href = '/';
+                    // localStorage.setItem("user", data);
+                }
+                    
             })
             .catch(error => console.log('error', error));
     }

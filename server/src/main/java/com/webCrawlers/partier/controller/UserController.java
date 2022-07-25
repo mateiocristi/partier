@@ -40,11 +40,16 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getUser(id));
     }
 
-    @GetMapping("/users/name/{username}")
-    public ResponseEntity<?> getUserByUsername(@PathVariable String username) {
+    @GetMapping("/users/check/{username}")
+    public ResponseEntity<?> checkUserByUsername(@PathVariable String username) {
         if (userService.getUser(username) !=  null)
             return ResponseEntity.status(HttpStatus.OK).body("found");
         return ResponseEntity.status(HttpStatus.OK).body("not found");
+    }
+
+    @GetMapping("/users/name/{username}")
+    public ResponseEntity<?> getUserByUsername(@PathVariable String username) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getUser(username));
     }
 
     @GetMapping("/user/organiser")
